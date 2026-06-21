@@ -67,14 +67,20 @@
 
 <script>
   var ROLES = [
-    {k:'--paper',    label:'Fond',        sub:'crème de la page',         def:'#f7f0e4'},
-    {k:'--oat',      label:'Sections claires (oat) — le grand aplat rose', sub:'fond secondaire (Accompagnement, Approche, Témoignages)', def:'#efe1c9'},
-    {k:'--forest',   label:'Foncé',       sub:'hero, titres, sections sombres (+ dégradé)', def:'#33291a', dark:true},
-    {k:'--ink',      label:'Texte',       sub:'corps de texte',           def:'#2a2620'},
-    {k:'--ink-soft', label:'Texte doux',  sub:'sous-titres, légendes',    def:'#6b5d49'},
-    {k:'--brass',    label:'Accent',      sub:'boutons WhatsApp, labels', def:'#b8860b'},
-    {k:'--brass-2',  label:'Terracotta clair', sub:'survols, chiffres',   def:'#d4af37'},
-    {k:'--sage',     label:'Sauge',       sub:'accents discrets',         def:'#a7a692'}
+    {k:'--brass',          label:'Bouton WhatsApp',        sub:'fond du bouton WhatsApp + n° de cartes, prix, bordures', def:'#b8860b'},
+    {k:'--brass-2',        label:'Accent clair',           sub:'survol du bouton, citation CTA, liens footer',  def:'#d4af37'},
+    {k:'--accent-text',    label:'Labels / eyebrows',      sub:'petits titres majuscules + citation « story »', def:'#8a6d1f'},
+    {k:'--hero-credential',label:'Ligne crédibilité hero', sub:'la ligne sous le bandeau du hero',              def:'#f0dca0'},
+    {k:'--paper',          label:'Fond de page',           sub:'fond clair principal',                          def:'#f7f0e4'},
+    {k:'--oat',            label:'Sections claires',       sub:'fond secondaire (Accompagnement · Approche · Témoignages)', def:'#efe1c9'},
+    {k:'--forest',         label:'Foncé principal',        sub:'hero, titres, section « Qui je suis »',         def:'#33291a', dark:true},
+    {k:'--forest-2',       label:'Foncé — footer',         sub:'fond du pied de page',                          def:'#2b2216', dark:true},
+    {k:'--dark1',          label:'Dégradé CTA — bas',      sub:'bande « Faites le premier pas » (bas)',         def:'#2b2216', dark:true},
+    {k:'--dark2',          label:'Dégradé CTA — haut',     sub:'bande « Faites le premier pas » (haut)',        def:'#33291a', dark:true},
+    {k:'--dark3',          label:'Foncé clair',            sub:'variante foncée plus claire',                   def:'#473a25', dark:true},
+    {k:'--ink',            label:'Texte',                  sub:'corps de texte',                                def:'#2a2620'},
+    {k:'--ink-soft',       label:'Texte doux',             sub:'sous-titres, légendes, paragraphes story',      def:'#6b5d49'},
+    {k:'--sage',           label:'Sauge',                  sub:'accents discrets',                              def:'#a7a692'}
   ];
   var state = {};
   ROLES.forEach(function(r){ state[r.k] = r.def; });
@@ -93,11 +99,6 @@
   function applyOne(k, v){
     var root = docRoot(); if(!root) return;
     root.style.setProperty(k, v);
-    if(k === '--forest'){
-      root.style.setProperty('--dark1', v);
-      root.style.setProperty('--dark2', lighten(v, .07));
-      root.style.setProperty('--dark3', lighten(v, .14));
-    }
   }
   function applyAll(){ Object.keys(state).forEach(function(k){ applyOne(k, state[k]); }); }
 
@@ -139,8 +140,6 @@
   var toast=document.getElementById('toast');
   document.getElementById('export').addEventListener('click', function(){
     var lines = ROLES.map(function(r){ return '  '+r.k+': '+state[r.k]+';'; });
-    var f = state['--forest'];
-    lines.push('  --dark1: '+f+'; --dark2: '+lighten(f,.07)+'; --dark3: '+lighten(f,.14)+';');
     var css = ':root{\n'+lines.join('\n')+'\n}';
     document.getElementById('out').value = css;
     if(navigator.clipboard) navigator.clipboard.writeText(css).catch(function(){});
@@ -156,10 +155,8 @@
   // Appliquer à mon site (live) — écrit la palette dans Supabase ; le site la relit au chargement
   var SBK="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFvZG56dHFzYXdzb2ZpbWJzZmhiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4NTQ1MTEsImV4cCI6MjA5MjQzMDUxMX0.gXOfYw6BjImESFcmrmkRaPsNGkTMEuKiWovEgqMuqIs";
   document.getElementById('apply-site').addEventListener('click', function(){
-    var f=state['--forest'];
-    var pal={paper:state['--paper'],oat:state['--oat'],forest:f,'forest-2':lighten(f,.05),
-      dark1:f,dark2:lighten(f,.07),dark3:lighten(f,.14),
-      ink:state['--ink'],'ink-soft':state['--ink-soft'],brass:state['--brass'],'brass-2':state['--brass-2'],sage:state['--sage']};
+    var pal={};
+    ROLES.forEach(function(r){ pal[r.k.replace(/^--/,'')] = state[r.k]; });
     function flash(t){toast.textContent=t;toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');toast.textContent='Palette copiée ✓';},2400);}
     fetch("https://qodnztqsawsofimbsfhb.supabase.co/rest/v1/site_palette?on_conflict=slug",{method:"POST",
       headers:{apikey:SBK,Authorization:"Bearer "+SBK,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},

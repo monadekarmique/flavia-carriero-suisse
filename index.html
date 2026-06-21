@@ -44,7 +44,7 @@
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
     --forest:#33291a;--forest-2:#2b2216;--oat:#efe1c9;--paper:#f7f0e4;--dark1:#2b2216;--dark2:#33291a;--dark3:#473a25;
-    --ink:#2a2620;--ink-soft:#6b5d49;--brass:#b8860b;--brass-2:#d4af37;--sage:#a7a692;
+    --ink:#2a2620;--ink-soft:#6b5d49;--brass:#b8860b;--brass-2:#d4af37;--sage:#a7a692;--accent-text:#8a6d1f;--hero-credential:#f0dca0;
     --line:rgba(52,39,31,.14);--serif:'Fraunces',Georgia,serif;--sans:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
     --wrap:1080px;--r:16px;
   }
@@ -53,7 +53,7 @@
   a{color:inherit}
   img{display:block;max-width:100%}
   .wrap{max-width:var(--wrap);margin:0 auto;padding:0 22px}
-  .eyebrow{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#8a6d1f}
+  .eyebrow{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--accent-text)}
   .btn{display:inline-flex;align-items:center;gap:.55em;font-weight:700;font-size:1rem;padding:.95em 1.5em;border-radius:999px;border:1.5px solid transparent;cursor:pointer;text-decoration:none;transition:transform .2s,background .2s,box-shadow .2s;line-height:1}
   .btn svg{width:20px;height:20px}
   .btn--wa{background:var(--brass);color:#fff;box-shadow:0 14px 30px -14px rgba(193,115,74,.9)}
@@ -67,16 +67,17 @@
   .hero{position:relative}
   .hero-badge{position:absolute;top:14px;right:14px;z-index:6;width:min(232px,46vw)}
   .hero-badge img{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 18px rgba(0,0,0,.45))}
-  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:#8a6d1f}
+  .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-text)}
   .hdr .btn--wa{flex:none}
 
   /* Hero plein cadre */
   .hero{position:relative;color:#fff;min-height:clamp(440px,76vh,640px);display:flex;align-items:flex-end}
   .hero::before{content:"";position:absolute;inset:0;background:url(assets/tores.jpeg) center 50%/cover}
+  
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(22,15,9,.92),rgba(22,15,9,.60) 50%,rgba(22,15,9,.34))}
   .hero .wrap{position:relative;z-index:2;padding-bottom:clamp(36px,6vw,64px);padding-top:60px}
   .hero .eyebrow{color:var(--brass-2)}
-  .hero-credential{color:#f0dca0;font-weight:700;font-size:1rem;letter-spacing:.01em;margin-bottom:.35rem;text-shadow:0 1px 2px rgba(0,0,0,.8),0 2px 18px rgba(0,0,0,.6)}
+  .hero-credential{color:var(--hero-credential);font-weight:700;font-size:1rem;letter-spacing:.01em;margin-bottom:.35rem;text-shadow:0 1px 2px rgba(0,0,0,.8),0 2px 18px rgba(0,0,0,.6)}
   .hero h1{font-size:clamp(2.2rem,5.6vw,3.6rem);margin:.5rem 0 .2rem;max-width:18ch;text-shadow:0 2px 18px rgba(0,0,0,.35)}
   .hero .lead{font-size:1.18rem;color:rgba(255,255,255,.92);max-width:42ch;margin-top:.7rem}
   .hero .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
@@ -278,7 +279,7 @@
         <p style="color:var(--ink-soft);margin-top:.8rem">J'ai écrit à l'ancêtre à l'origine de la chaîne, pour honorer et apaiser ce passé. En quelques semaines, ma tonalité intérieure a changé. Je ne suis plus la descendante des femmes blessées de ma lignée : je suis une femme qui a compris comment se libérer des émotions héritées — et cette lignée, apaisée, me soutient désormais.</p>
         <p style="color:var(--ink-soft);margin-top:.8rem">C'est ce chemin que j'accompagne aujourd'hui, par la chromothérapie pleine bande et la régénération vibratoire.</p>
         
-        <p style="font-family:var(--serif);font-style:italic;font-size:1.22rem;color:#8a6d1f;margin:1.4rem 0;line-height:1.4">« Ce que nos lignées n'ont pas pu déposer, nous pouvons le libérer. »</p>
+        <p style="font-family:var(--serif);font-style:italic;font-size:1.22rem;color:var(--accent-text);margin:1.4rem 0;line-height:1.4">« Ce que nos lignées n'ont pas pu déposer, nous pouvons le libérer. »</p>
         <p style="color:var(--ink-soft)">Si mon approche résonne en toi, écris-moi.</p>
         <a class="btn btn--ghost" href="parcours.html" style="margin-top:20px">Lire mon parcours →</a>
       </div>
