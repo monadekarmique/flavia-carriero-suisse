@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="robots" content="noindex,nofollow" />
-<title>Palette — Reconnexion à soi (réglage couleurs)</title>
+<title>Palette — Flavia Carriero (réglage couleurs)</title>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
@@ -152,15 +152,16 @@
     document.getElementById('out').value='';
   });
 
-  // Appliquer à mon site (live) — écrit la palette dans Supabase ; le site la relit au chargement
-  var SBK="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFvZG56dHFzYXdzb2ZpbWJzZmhiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4NTQ1MTEsImV4cCI6MjA5MjQzMDUxMX0.gXOfYw6BjImESFcmrmkRaPsNGkTMEuKiWovEgqMuqIs";
+  // Appliquer à mon site (live) — écrit via l'edge function GATÉE PAR TOKEN (#23) : seul le
+  // porteur du write_token de CE slug peut écrire (fini l'écriture anon vers un slug arbitraire).
+  var WRITE_TOKEN="95f470da7c728b3136d8ef65fc376b562c00fc331b68af9004278a93ad16edcc";
   document.getElementById('apply-site').addEventListener('click', function(){
     var pal={};
     ROLES.forEach(function(r){ pal[r.k.replace(/^--/,'')] = state[r.k]; });
     function flash(t){toast.textContent=t;toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');toast.textContent='Palette copiée ✓';},2400);}
-    fetch("https://qodnztqsawsofimbsfhb.supabase.co/rest/v1/site_palette?on_conflict=slug",{method:"POST",
-      headers:{apikey:SBK,Authorization:"Bearer "+SBK,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},
-      body:JSON.stringify({slug:"flavia",palette:pal})})
+    fetch("https://qodnztqsawsofimbsfhb.supabase.co/functions/v1/site-palette-write",{method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({slug:"flavia",palette:pal,token:WRITE_TOKEN})})
      .then(function(r){flash(r.ok?"Appliqué à ton site ✓ (recharge le site)":"Erreur "+r.status);})
      .catch(function(){flash("Erreur réseau");});
   });

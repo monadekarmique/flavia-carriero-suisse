@@ -61,7 +61,7 @@
 
     <footer>
       Praticienne certifiée MyShamanFamily PRO — méthode SVLBH (svlbh.com), depuis juin 2025<br>
-      <a href="https://www.instagram.com/carriero.flavia/" target="_blank" rel="noopener">@carriero.flavia</a>
+      <a href="https://www.instagram.com/carriero.flavia/" target="_blank" rel="noopener">@carriero.flavia</a> · <a href="https://" target="_blank" rel="noopener"></a>
     </footer>
   </main>
 
@@ -76,11 +76,11 @@
   function v(url){ return url + (url.indexOf('?')>-1 ? '&' : '?') + UTM; }
 
   function resolveHref(kw){
+    if(kw.indexOf('vitrine#') === 0) return v(VITRINE + kw.slice(7)); /* vitrine#<ancre> → https://<domain>/#<ancre> */
     switch(kw){
       case 'whatsapp':     return 'https://wa.me/'+WA+'?text='+waText;
       case 'vitrine':      return v(VITRINE);
       case 'parcours':     return v(VITRINE+'parcours.html');
-      case 'vitrine#cours':return v(VITRINE+'#cours');
       case 'instagram':    return 'https://www.instagram.com/'+IG+'/';
       case 'phone':        return 'tel:'+TEL;
       default:             return kw;

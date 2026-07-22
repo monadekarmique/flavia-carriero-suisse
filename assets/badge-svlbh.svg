@@ -1,4 +1,4 @@
-<svg width="430" height="126" viewBox="0 0 430 126" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Membre du Cercle de Lumière Suisse Romande — certifiée SVLBH ST4 MyShamanFamily PRO">
+<svg width="430" height="126" viewBox="0 0 430 126" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Membre du Cercle de Lumière Suisse Romande — certifiée SVLBH MyShamanFamily">
   <defs>
     <linearGradient id="seal" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#8c22e2"/>
@@ -15,7 +15,7 @@
   <path d="M50 64 l9 9 19 -23" fill="none" stroke="#ffffff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
   <!-- texte -->
   <text x="120" y="42" font-family="Georgia, 'Fraunces', serif" font-size="21" font-weight="700" fill="#e543c7">Certifiée SVLBH</text>
-  <text x="120" y="65" font-family="Helvetica, 'Hanken Grotesk', sans-serif" font-size="13" fill="#766085">ST5 · MyShamanFamily PRO</text>
+  <text x="120" y="65" font-family="Helvetica, 'Hanken Grotesk', sans-serif" font-size="13" fill="#766085">MyShamanFamily</text>
   <text x="120" y="87" font-family="Helvetica, 'Hanken Grotesk', sans-serif" font-size="12.5" font-weight="700" fill="#8c22e2">Membre du Cercle de Lumière</text>
   <text x="120" y="105" font-family="Helvetica, 'Hanken Grotesk', sans-serif" font-size="11.5" fill="#766085">Suisse Romande · vérifiée sur svlbh.com</text>
 </svg>
