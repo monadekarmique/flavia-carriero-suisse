@@ -154,7 +154,7 @@
 
   // Appliquer à mon site (live) — écrit via l'edge function GATÉE PAR TOKEN (#23) : seul le
   // porteur du write_token de CE slug peut écrire (fini l'écriture anon vers un slug arbitraire).
-  var WRITE_TOKEN="95f470da7c728b3136d8ef65fc376b562c00fc331b68af9004278a93ad16edcc";
+  var WRITE_TOKEN="d77bd86188700f2635bbd2fd4faa46a97431ba9273ba2df5d4c1a643f18d40db";
   document.getElementById('apply-site').addEventListener('click', function(){
     var pal={};
     ROLES.forEach(function(r){ pal[r.k.replace(/^--/,'')] = state[r.k]; });
